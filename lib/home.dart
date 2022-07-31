@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:july31/services.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,8 +9,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var url = Uri.parse('https://jsonplaceholder.typicode.com/users');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +22,7 @@ class _HomeState extends State<Home> {
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text(snapshot.data[index]['name']),
+                title: Text(snapshot.data[index].username),
               );
             },
           );
@@ -36,12 +32,5 @@ class _HomeState extends State<Home> {
         // Center(child: IconButton(onPressed: getUser, icon: Icon(Icons.add)))
 
         );
-  }
-
-  getUser() async {
-    var response = await http.get(url);
-    var data = jsonDecode(response.body);
-    // print(data);
-    return data;
   }
 }
