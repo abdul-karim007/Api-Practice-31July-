@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:july31/details.dart';
 import 'package:july31/services.dart';
 
 class Home extends StatefulWidget {
@@ -23,6 +24,16 @@ class _HomeState extends State<Home> {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(snapshot.data[index].username),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Details(
+                        userDetails: snapshot.data[index],
+                      ),
+                    ),
+                  );
+                },
               );
             },
           );
